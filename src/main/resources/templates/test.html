@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+            font-family: arial;
+        }
+
+        .title {
+            color: grey;
+            font-size: 18px;
+        }
+
+
+        a {
+            text-decoration: none;
+            font-size: 22px;
+            color: black;
+        }
+
+        button:hover, a:hover {
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+<div class="container text-center">
+
+
+
+
+    <div class="card" th:each="BillInfo : ${billInfo}">
+
+        <!--<h1 th:text="${BillInfo.customerNumber}"></h1>-->
+        <p class="title">
+            <b>Issue Date: </b><abbr th:text="${BillInfo.issue_date}"></abbr>
+            <b>Due Date: </b><abbr th:text="${BillInfo.due_date}"></abbr>
+        </p>
+        <p><b>CustomerNumber : </b><abbr th:text="${BillInfo.customerNumber}"></abbr> </p>
+        <p><b>Bill Number : </b><abbr th:text="${BillInfo.billNumber}"></abbr> </p>
+        <p><b>Transition ID : </b><abbr th:text="${BillInfo.utility_trnxn_id}"></abbr> </p>
+        <p><b>BankTransition ID : </b><abbr th:text="${BillInfo.bank_trnxn_id}"></abbr> </p>
+        <h3><b>Payment status : </b> <acronym th:text="${BillInfo.billStatus.meaning}">paid</acronym></h3>
+        <h2>
+            <small><b>Bill amount : </b><acronym th:text="${BillInfo.bill_amount}">  </acronym>&nbsp &nbsp </small>
+            <small><b>Vat amount : </b><acronym th:text="${BillInfo.vat_amount}">  </acronym>&nbsp &nbsp </small>
+            <small><b>Total amount : </b><acronym th:text="${BillInfo.total_amount}">  </acronym>&nbsp &nbsp </small>
+        </h2>
+        <h3>
+            <cite><b>Paid amount : </b><acronym th:text="${BillInfo.paid_amount}">  </acronym>&nbsp &nbsp </cite>
+            <cite><b>Due amount : </b><acronym th:text="${BillInfo.due_amount}">  </acronym>&nbsp &nbsp </cite>
+        </h3>
+
+        <p>
+            <a class="btn btn-danger" href="/home">Back</a>
+            <a class="btn btn-success" href="#">Update Payment</a>
+    </div>
+</div>
+
+
+</body>
+</html>
