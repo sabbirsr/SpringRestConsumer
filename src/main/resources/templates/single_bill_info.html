@@ -42,7 +42,7 @@
                     <div class=" table-responsive table-hover"
                          style=" max-height: 45%; overflow-y: auto">
 
-                        <table class="table">
+                        <table class="table" th:if="${billInfo != null}">
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -123,6 +123,9 @@
                             </tr>
                             </tbody>
                         </table>
+                        <div th:unless="${billInfo}">
+                            <h5>No record found please check your Bill Number</h5>
+                        </div>
                     </div>
                 </div>
             </div>

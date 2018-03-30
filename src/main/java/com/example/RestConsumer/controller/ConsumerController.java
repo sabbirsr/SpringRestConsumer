@@ -40,13 +40,11 @@ public class ConsumerController {
             e.printStackTrace();
         }
 
-        if (billInformation == null){
-            return "Not found any information please check your Bill number";
-        }else {
+
             model.addAttribute("billInfo",billInformation);
 
             return "single_bill_info";
-        }
+
 
 
     }
