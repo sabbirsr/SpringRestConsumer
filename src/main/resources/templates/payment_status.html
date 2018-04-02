@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layouts/fragments :: head"></head>
 <body>
 <!-- Navigation -->
@@ -15,7 +16,8 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger btn" data-toggle="modal" data-target="#billInfo" >BillInfo</a>
+                    <a class="nav-link js-scroll-trigger btn" data-toggle="modal"
+                       data-target="#billInfo">BillInfo</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger btn" data-toggle="modal" data-target="#billPay">BillPay</a>
@@ -31,20 +33,30 @@
     </div>
 </nav>
 
-    <!-- Intro Header -->
-    <header class="masthead">
-        <div class="intro-body">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 mx-auto">
-                        <h3 class="brand-heading">Welcome<br><h2>User01</h2></h3>
-                        <p class="intro-text">Thanks for joining</p>
+<!-- Intro Header -->
+<header class="masthead">
+    <div class="intro-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 mx-auto">
+                        <!--<div th:if="${billInfo != null}">-->
 
+                            <!--<div th:each="messages : ${billInfo}">-->
+                                <!--<h1 style="margin-top: 15%;" th:text="${messages.message}"></h1>-->
+                                <!--<h1 th:text="${messages.status}"></h1>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div th:unless="${billInfo}">-->
+                            <!--<h5>No record found please check your Bill Number</h5>-->
+                        <!--</div>-->
+
+                    <h1 th:text="${billInfo}"></h1>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
+</header>
 <!--billInfoModal-->
 <div th:replace="layouts/fragments :: billInfoModal"></div>
 <!-- BillPayModal -->
