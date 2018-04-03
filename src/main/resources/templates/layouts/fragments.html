@@ -15,8 +15,10 @@
 
 
     <!-- Custom fonts for this template -->
-    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}" href="../static/css/font-awesome.min.css" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}" href="../static/css/font-awesome.min.css"
+          type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet"
+          type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
@@ -33,7 +35,7 @@
 <!-- Navigation -->
 <nav th:fragment="navigation" class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Bill Pay Online</a>
+        <a class="navbar-brand js-scroll-trigger" href="/home">Bill Pay Online</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -43,19 +45,20 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#about">BillInfo</a>
+                    <a class="nav-link js-scroll-trigger btn" data-toggle="modal" data-target="#billInfo">BillInfo</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#login">BillPay</a>
+                    <a class="nav-link js-scroll-trigger btn" data-toggle="modal" data-target="#billPay">BillPay</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#contact">UnpaidBill</a>
+                    <a class="nav-link js-scroll-trigger btn" data-toggle="modal" data-target="#unpaidList">UnpaidBill</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#contact">CancelRequest</a>
+                    <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#billCancel" data-whatever="@mdo">Open modal for @mdo</button>-->
+                    <a class="nav-link js-scroll-trigger btn" data-toggle="modal" data-target="#billCancel">BillCancel</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger text-danger" href="#contact">LogOut</a>
+                    <a class="nav-link js-scroll-trigger text-danger" href="/">LogOut</a>
                 </li>
             </ul>
         </div>
@@ -63,7 +66,8 @@
 </nav>
 
 <!-- billInfoModal -->
-<div th:fragment="billInfoModal" class="modal fade" id="billInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div th:fragment="billInfoModal" class="modal fade" id="billInfo" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -88,9 +92,9 @@
     </div>
 </div>
 
-<h1  class="container">sdfsdfsd</h1>
 <!-- BillPayModal -->
-<div th:fragment="BillPayModal" class="modal fade" id="billPay" tabindex="-1" role="dialog" aria-labelledby="billPayModalLabel" aria-hidden="true">
+<div th:fragment="BillPayModal" class="modal fade" id="billPay" tabindex="-1" role="dialog"
+     aria-labelledby="billPayModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -102,12 +106,12 @@
             <div class="modal-body">
                 <form action="pay" method="post">
                     <div class="form-group">
-                        <label class="text-dark" >Bill Number:</label>
+                        <label class="text-dark">Bill Number:</label>
                         <input type="text" class="form-control" name="billNumber" placeholder="Enter billNumber">
                     </div>
                     <div class="form-group">
                         <label class="text-dark">Amount:</label>
-                        <input type="text" class="form-control" name="paidAmount" placeholder="Enter Amount here..">
+                        <input type="number" step="0.01" class="form-control" name="paidAmount" placeholder="Enter Amount here..">
                     </div>
 
                     <button type="submit" class="btn btn-default">Submit</button>
@@ -119,7 +123,8 @@
 </div>
 
 <!-- billInfoModal -->
-<div th:fragment="unpaidBillModal" class="modal fade" id="unpaidList" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div th:fragment="unpaidBillModal" class="modal fade" id="unpaidList" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -133,7 +138,8 @@
                 <form action="unpaidList" method="post">
                     <div class="form-group">
                         <label class="text-dark">Customer Number:</label>
-                        <input type="text" class="form-control" name="customerNumber" placeholder="Enter customerNumber here">
+                        <input type="text" class="form-control" name="customerNumber"
+                               placeholder="Enter customerNumber here">
                     </div>
 
                     <button type="submit" class="btn btn-default">Submit</button>
@@ -144,28 +150,32 @@
     </div>
 </div>
 
-<!-- BillPayModal -->
-<div th:fragment="payModal" class="modal fade" id="pay" tabindex="-1" role="dialog" aria-labelledby="billPayModalLabel" aria-hidden="true">
+
+<!--BillCancelModel-->
+<div th:fragment="unpaidBillModal" class="modal fade" id="billCancel" tabindex="-1" role="dialog"
+     aria-labelledby="billCancelModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-info" id="payModalLabel">Bill Pay</h5>
+                <h5 class="modal-title text-info text-info" id="billCancelModalLabel">Bill Cancellation</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="pay" method="post">
+                <form action="cancelReq" method="post">
                     <div class="form-group">
-                        <label class="text-dark" >Bill Number:</label>
-                        <input type="text" class="form-control" name="billNumber" placeholder="Enter billNumber">
+                        <label for="billNumber" class="col-form-label text-dark">Bill Number:</label>
+                        <input type="text" class="form-control" id="billNumber" name="billNumber"  placeholder="Enter billNumber here...">
                     </div>
                     <div class="form-group">
-                        <label class="text-dark">Amount:</label>
-                        <input type="text" class="form-control" name="paidAmount" placeholder="Enter Amount here..">
+                        <label for="remarks" class="col-form-label text-dark">Message:</label>
+                        <textarea class="form-control" id="remarks" name="remarks" placeholder="Type your cancellation reason here..."></textarea>
                     </div>
 
                     <button type="submit" class="btn btn-default">Submit</button>
+                    </button>
                 </form>
             </div>
 
@@ -173,6 +183,25 @@
     </div>
 </div>
 
-
+<!-- Modal -->
+<div class="modal fade" id="cancelAlert" tabindex="-1" role="dialog" aria-labelledby="cancelAlertModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cancelAlertModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

@@ -5,12 +5,12 @@ public class StatusMessage {
     private  String message;
     private  String status;
 
+    public StatusMessage() {
+    }
+
     public StatusMessage(String message, String status) {
         this.message = message;
         this.status = status;
-    }
-
-    public StatusMessage() {
     }
 
     public String getMessage() {
